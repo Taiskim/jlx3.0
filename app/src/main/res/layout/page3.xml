@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fde471"
+    android:paddingHorizontal="50dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/x1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentTop="true"
+            android:text="@string/x1"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/x2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/x1"
+            android:layout_marginBottom="10dp"
+            android:text="@string/x2"
+            android:textColor="@android:color/black"/>
+
+        <ImageView
+            android:id="@+id/imag_3"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:src="@drawable/imag_3"
+            android:layout_below="@+id/x2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/x3"
+            android:layout_below="@+id/imag_3"
+            android:textColor="@android:color/black"/>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>
