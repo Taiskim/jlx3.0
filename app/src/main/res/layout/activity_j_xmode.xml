@@ -5,17 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/jxms"
-    tools:context=".JXmode"
-    android:orientation="vertical">
+    tools:context=".JXmode">
 
     <RadioGroup
         android:id="@+id/rg_group"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:paddingTop="680dp"
-        >
-
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rb_map"
@@ -25,6 +22,7 @@
             android:button="@null"
             android:drawableTop="@drawable/homes"
             android:gravity="center" />
+
 
         <RadioButton
             android:id="@+id/rb_find"
@@ -37,7 +35,7 @@
 
         <RadioButton
             android:id="@+id/rb_me"
-            android:layout_width="0dp"
+            android:layout_width="3dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
@@ -47,12 +45,13 @@
 
         <RadioButton
             android:id="@+id/rb_car"
-            android:layout_width="5dp"
+            android:layout_width="3dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/settings"
             android:gravity="center" />
+
     </RadioGroup>
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

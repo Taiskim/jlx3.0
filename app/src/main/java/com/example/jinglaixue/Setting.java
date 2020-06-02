@@ -41,11 +41,6 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
                 intent3.setClass(getApplicationContext(),Wechat.class);
                 startActivity(intent3);
                 break;
-            case R.id.rb_car:
-                Intent intent4=new Intent();
-                intent4.setClass(getApplicationContext(),Setting.class);
-                startActivity(intent4);
-                break;
         }
     }
 }

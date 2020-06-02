@@ -31,11 +31,6 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 intent1.setClass(getApplicationContext(),daohang.class);
                 startActivity(intent1);
                 break;
-            case R.id.rb_find:
-                Intent intent2=new Intent();
-                intent2.setClass(getApplicationContext(),JXmode.class);
-                startActivity(intent2);
-                break;
             case R.id.rb_me:
                 Intent intent3=new Intent();
                 intent3.setClass(getApplicationContext(),Wechat.class);

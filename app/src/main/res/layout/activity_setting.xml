@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/settinga"
+    android:background="@drawable/bg_green"
     tools:context=".Wechat">
 
-        <RadioGroup
+    <RadioGroup
         android:id="@+id/rg_group"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:paddingTop="680dp"
-            >
-
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rb_map"
@@ -24,6 +22,7 @@
             android:button="@null"
             android:drawableTop="@drawable/homes"
             android:gravity="center" />
+
 
         <RadioButton
             android:id="@+id/rb_find"
@@ -52,11 +51,18 @@
             android:button="@null"
             android:drawableTop="@drawable/settings"
             android:gravity="center" />
-        </RadioGroup>
+
+    </RadioGroup>
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:orientation="vertical" />
-    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="182dp"
+        android:layout_height="399dp"
+        android:layout_weight="1" />
+</LinearLayout>
