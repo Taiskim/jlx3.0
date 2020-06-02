@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class daohang extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -40,6 +42,11 @@ public class daohang extends AppCompatActivity implements View.OnClickListener {
                 intent4.setClass(getApplicationContext(),Setting.class);
                 startActivity(intent4);
                 break;
+
         }
+    }
+    public void shop_click(View view){
+        Log.i("shop","shopclick");
+        Toast.makeText(this,"shop",Toast.LENGTH_SHORT).show();
     }
 }

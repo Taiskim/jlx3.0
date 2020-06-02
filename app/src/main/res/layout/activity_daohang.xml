@@ -11,6 +11,7 @@
         android:layout_width="600dp"
         android:layout_height="88dp"
         android:layout_weight="0"
+        android:onClick="shop_click"
         app:srcCompat="@drawable/shop" />
 
 
@@ -23,10 +24,13 @@
         >
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="480dp"
-            android:layout_height="231dp"
-            android:layout_weight="0"
-            app:srcCompat="@drawable/fatcat" />
+
+            android:layout_weight="1"
+            app:srcCompat="@drawable/fatcat"
+            android:layout_height="200dp"
+            android:layout_width="200dp" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

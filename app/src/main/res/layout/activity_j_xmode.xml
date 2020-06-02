@@ -1,18 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jxms"
-    tools:context=".JXmode">
+    android:background="#ffe471"
+    tools:context=".JXmode"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_center"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/jx_shalou"
+
+        android:layout_height="300dp">
+
+        <Button
+            android:id="@+id/btn_minus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+
+            android:layout_marginLeft="20dp"
+
+            android:background="@drawable/jx_minus" />
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/jx_add"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="01:30:00"
+        android:textSize="60sp"
+        android:textColor="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/btn_beginstudy"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_time"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="开始静学"
+        android:textSize="30sp"
+        android:background="@android:color/white" />
 
     <RadioGroup
         android:id="@+id/rg_group"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
         <RadioButton
             android:id="@+id/rb_map"
@@ -59,4 +112,4 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:orientation="vertical" />
-</LinearLayout>
+</RelativeLayout>
