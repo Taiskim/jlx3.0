@@ -16,17 +16,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         unitUI();
     }
 
+
     private void unitUI() {
         findViewById(R.id.button2).setOnClickListener(this);
+        findViewById(R.id.button1).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.button1:
+                Intent intent1=new Intent();
+                intent1.setClass(getApplicationContext(),daohang.class);
+                startActivity(intent1);
+                break;
             case R.id.button2:
-                Intent intent=new Intent();
-                intent.setClass(getApplicationContext(),RegisterActivity.class);
-                startActivity(intent);
+                Intent intent2=new Intent();
+                intent2.setClass(getApplicationContext(),RegisterActivity.class);
+                startActivity(intent2);
                 break;
         }
     }

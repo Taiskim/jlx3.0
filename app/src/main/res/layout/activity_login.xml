@@ -89,7 +89,6 @@
                 android:background="@drawable/blue_1"
                 android:text="@string/login"
                 android:textColor="#fde471"
-                android:onClick="skip"/>
                 android:textSize="25sp" />
 
         </LinearLayout>

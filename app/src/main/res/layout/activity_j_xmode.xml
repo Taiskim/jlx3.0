@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/JX_mode"
-    tools:context=".JXmode">
+    android:background="@drawable/jxms"
+    tools:context=".JXmode"
+    android:orientation="vertical">
 
     <RadioGroup
         android:id="@+id/rg_group"
@@ -53,5 +54,10 @@
             android:drawableTop="@drawable/settings"
             android:gravity="center" />
     </RadioGroup>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="vertical" />
+</LinearLayout>
