@@ -1,22 +1,38 @@
-package com.example.jinglaixue;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.jinglaixue.MainTabs;
 
 import android.content.Intent;
-import android.net.IpSecManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class JXmode extends AppCompatActivity implements View.OnClickListener {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.jinglaixue.R;
+
+
+public class MainTab02 extends Fragment implements View.OnClickListener {
+
+    private View thisView;
+
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        thisView = inflater.inflate(R.layout.activity_j_xmode,container,false);
+        unitUI();
+        return thisView;
+    }
+
+
+
 
     private TextView tv_time;
     private Handler handler = new Handler(){
@@ -30,26 +46,15 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
 
     boolean isStudy = false;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_j_xmode);
-        unitUI();
-    }
 
     private void unitUI() {
-        findViewById(R.id.rb_map).setOnClickListener(this);
-        findViewById(R.id.rb_car).setOnClickListener(this);
-        findViewById(R.id.rb_find).setOnClickListener(this);
-        findViewById(R.id.rb_me).setOnClickListener(this);
-
-        findViewById(R.id.btn_add).setOnClickListener(this);
-        findViewById(R.id.btn_minus).setOnClickListener(this);
-        findViewById(R.id.btn_beginstudy).setOnClickListener(this);
+        thisView.findViewById(R.id.btn_add).setOnClickListener(this);
+        thisView.findViewById(R.id.btn_minus).setOnClickListener(this);
+        thisView.findViewById(R.id.btn_beginstudy).setOnClickListener(this);
 
 
-        tv_time = (TextView) findViewById(R.id.tv_time);
-        btn_study =  (Button)findViewById(R.id.btn_beginstudy);
+        tv_time = (TextView) thisView.findViewById(R.id.tv_time);
+        btn_study =  (Button)thisView.findViewById(R.id.btn_beginstudy);
 
         timerun = new Runnable() {
             @Override
@@ -64,31 +69,11 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.rb_map:
-                Intent intent1=new Intent();
-                intent1.setClass(getApplicationContext(),daohang.class);
-                startActivity(intent1);
-                break;
-            case R.id.rb_me:
-                Intent intent3=new Intent();
-                intent3.setClass(getApplicationContext(),Wechat.class);
-                startActivity(intent3);
 
-                break;
-            case R.id.rb_car:
-                Intent intent4=new Intent();
-                intent4.setClass(getApplicationContext(),Setting.class);
-                startActivity(intent4);
-                break;
-
-
-                //加号剪号
+            //加号剪号
             case R.id.btn_add:
 
-
-
                 String timeStr = tv_time.getText().toString().trim();
-                //Toast.makeText(this,timeStr,Toast.LENGTH_SHORT).show();
 
                 String[] splits = timeStr.split(":");
 
@@ -96,28 +81,20 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 int m = Integer.parseInt(splits[1]);
                 int s = Integer.parseInt(splits[2]);
 
-                if (h >= 2) {
-
+                if (h >= 2)
                     break;
-                }
-
 
                 m = m+30;
                 if(m>=60){
                     h = h+1;
-//                    if(h>=2){
-//                        findViewById(R.id.btn_add).setVisibility(View.INVISIBLE);
-//                    }
                     m = m % 60;
                 }
                 timeStr = String.format("%02d:%02d:%02d",h,m,s);
                 tv_time.setText(timeStr);
 
-
                 break;
             case R.id.btn_minus:
                 timeStr = tv_time.getText().toString().trim();
-                //Toast.makeText(this,timeStr,Toast.LENGTH_SHORT).show();
 
                 splits = timeStr.split(":");
 
@@ -125,17 +102,11 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 m = Integer.parseInt(splits[1]);
                 s = Integer.parseInt(splits[2]);
 
-
-
-
-
-
-
                 m = m-30;
                 if(m<0){
                     h = h - 1;
                     if(h<2){
-                        findViewById(R.id.btn_add).setVisibility(View.VISIBLE);
+                        thisView.findViewById(R.id.btn_add).setVisibility(View.VISIBLE);
                     }
                     m = 60 + m;
                     if(h<0){
@@ -148,7 +119,7 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 timeStr = String.format("%02d:%02d:%02d",h,m,s);
                 tv_time.setText(timeStr);
                 break;
-                //开始静学
+            //开始静学
             case R.id.btn_beginstudy:
 
                 if(!isStudy){
@@ -200,6 +171,4 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
 
         handler.sendMessage(msg);
     }
-
-
 }

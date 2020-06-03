@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffe471"
-    tools:context=".JXmode"
+    tools:context=".TestMain"
     android:orientation="vertical">
 
 
@@ -13,7 +13,7 @@
         android:id="@+id/rl_center"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/jx_shalou"
 
         android:layout_height="300dp">
@@ -58,67 +58,17 @@
         android:textSize="30sp"
         android:background="@android:color/white" />
 
-    <RadioGroup
-        android:id="@+id/rg_group"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-
-        <RadioButton
-            android:id="@+id/rb_map"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/homes"
-            android:gravity="center" />
-
-
-        <RadioButton
-            android:id="@+id/rb_find"
-            android:layout_width="3dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/texts"
-            android:gravity="center" />
-
-        <RadioButton
-            android:id="@+id/rb_me"
-            android:layout_width="3dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:drawableTop="@drawable/users"
-            android:gravity="center" />
-
-        <RadioButton
-            android:id="@+id/rb_car"
-            android:layout_width="3dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/settings"
-            android:gravity="center" />
-
-    </RadioGroup>
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="vertical" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:text="设置时间开始静学吧"
+        android:textStyle="bold"
         android:textColor="#ffffff"
-        android:textSize="20dp"
-        android:layout_marginTop="100dp"
-        android:text="设置时间开始静学吧" />
+        android:layout_marginBottom="0dp"
+        android:textSize="20dp" />
 </RelativeLayout>

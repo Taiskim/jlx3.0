@@ -5,58 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wechat"
-    tools:context=".Wechat">
-
-    <RadioGroup
-        android:id="@+id/rg_group"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rb_map"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/homes"
-            android:gravity="center" />
+    tools:context=".TestMain">
 
 
-        <RadioButton
-            android:id="@+id/rb_find"
-            android:layout_width="3dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/texts"
-            android:gravity="center" />
-
-        <RadioButton
-            android:id="@+id/rb_me"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:drawableTop="@drawable/users"
-            android:gravity="center" />
-
-        <RadioButton
-            android:id="@+id/rb_car"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/settings"
-            android:gravity="center" />
-
-    </RadioGroup>
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="vertical" />
 </LinearLayout>
