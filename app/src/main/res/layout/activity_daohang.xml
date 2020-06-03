@@ -17,16 +17,16 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="120dp"
         >
         <ImageView
             android:id="@+id/imageView8"
-
             android:layout_weight="1"
             app:srcCompat="@drawable/fatcat"
+            android:layout_marginLeft="110dp"
             android:layout_height="200dp"
             android:layout_width="200dp" />
 
@@ -44,8 +44,9 @@
 
             <ImageView
                 android:id="@+id/imageView10"
-                android:layout_width="600dp"
+                android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_marginLeft="248dp"
                 app:srcCompat="@drawable/biaoqing" />
 
 
