@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.IpSecManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,8 +26,9 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
         }
     };
     Button btn_study;
+    Runnable timerun;
 
-    Thread timer;
+    boolean isStudy = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,17 +51,14 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
         tv_time = (TextView) findViewById(R.id.tv_time);
         btn_study =  (Button)findViewById(R.id.btn_beginstudy);
 
-        Runnable timerun = new Runnable() {
+        timerun = new Runnable() {
             @Override
             public void run() {
-                while(true){
-                    timing();
-                }
-
+                timing();
+                handler.postDelayed(this,1000);
             }
 
         };
-        timer = new Thread(timerun);
     }
 
     @Override
@@ -96,8 +95,8 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 int m = Integer.parseInt(splits[1]);
                 int s = Integer.parseInt(splits[2]);
 
-                if(h>=2){
-                    findViewById(R.id.btn_add).setVisibility(View.INVISIBLE);
+                if (h >= 2) {
+
                     break;
                 }
 
@@ -105,9 +104,11 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 m = m+30;
                 if(m>=60){
                     h = h+1;
+//                    if(h>=2){
+//                        findViewById(R.id.btn_add).setVisibility(View.INVISIBLE);
+//                    }
                     m = m % 60;
                 }
-
                 timeStr = String.format("%02d:%02d:%02d",h,m,s);
                 tv_time.setText(timeStr);
 
@@ -126,14 +127,15 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
 
 
 
-                if(h<2){
-                    findViewById(R.id.btn_add).setVisibility(View.VISIBLE);
-                }
+
 
 
                 m = m-30;
                 if(m<0){
                     h = h - 1;
+                    if(h<2){
+                        findViewById(R.id.btn_add).setVisibility(View.VISIBLE);
+                    }
                     m = 60 + m;
                     if(h<0){
                         h = 0;
@@ -148,16 +150,20 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 //开始静学
             case R.id.btn_beginstudy:
 
-                if (timer.isAlive()){
-
-                    timer.interrupt();
-
-                    btn_study.setText("开始静学");
-                }else {
-                    timer.start();
-
+                if(!isStudy){
+                    //开始学习
+                    isStudy = true;
+                    handler.postDelayed(timerun, 0);
                     btn_study.setText("停止静学");
+                }else {
+                    //结束学习
+                    isStudy = false;
+                    handler.removeCallbacks(timerun);
+                    btn_study.setText("开始静学");
                 }
+
+
+
                 break;
         }
     }
@@ -185,11 +191,7 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         }
-        try {
-            Thread.currentThread().sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
         timeStr = String.format("%02d:%02d:%02d",h,m,s);
         Message msg = new Message();
