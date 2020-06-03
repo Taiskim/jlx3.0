@@ -73,6 +73,7 @@ public class JXmode extends AppCompatActivity implements View.OnClickListener {
                 Intent intent3=new Intent();
                 intent3.setClass(getApplicationContext(),Wechat.class);
                 startActivity(intent3);
+
                 break;
             case R.id.rb_car:
                 Intent intent4=new Intent();
