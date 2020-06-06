@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                app:srcCompat="@drawable/username" />
+                app:srcCompat="@drawable/username_green" />
 
             <EditText
                 android:id="@+id/login_username"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                app:srcCompat="@drawable/password" />
+                app:srcCompat="@drawable/password_green" />
 
             <EditText
                 android:id="@+id/login_password"

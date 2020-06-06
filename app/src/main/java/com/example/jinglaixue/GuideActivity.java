@@ -63,9 +63,9 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
 
 
         viewPager=findViewById(R.id.viewpager);
-        views.add(getLayoutInflater().inflate(R.layout.page1,null));
-        views.add(getLayoutInflater().inflate(R.layout.page2,null));
-        views.add(getLayoutInflater().inflate(R.layout.page3,null));
+        views.add(getLayoutInflater().inflate(R.layout.guide1,null));
+        views.add(getLayoutInflater().inflate(R.layout.guide2,null));
+        views.add(getLayoutInflater().inflate(R.layout.guide3,null));
 
         viewPager.addOnPageChangeListener(this);
         viewPager.setAdapter(new MyPagerAdapter());
