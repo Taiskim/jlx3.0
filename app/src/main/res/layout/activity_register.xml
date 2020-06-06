@@ -32,7 +32,7 @@
                 app:srcCompat="@drawable/username" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/ed_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -58,7 +58,7 @@
                 app:srcCompat="@drawable/email" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/ed_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -83,7 +83,7 @@
                 app:srcCompat="@drawable/password" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/ed_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -108,7 +108,7 @@
                 app:srcCompat="@drawable/password" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/ed_password2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -128,7 +128,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/btn_register"
                 android:background="@drawable/blue_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_loginbtn"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,5 +1,7 @@
 package com.example.jinglaixue.MainTabs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -73,6 +75,9 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
             //加号剪号
             case R.id.btn_add:
 
+                if(isStudy)
+                    break;
+
                 String timeStr = tv_time.getText().toString().trim();
 
                 String[] splits = timeStr.split(":");
@@ -94,6 +99,10 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.btn_minus:
+
+                if(isStudy)
+                    break;
+
                 timeStr = tv_time.getText().toString().trim();
 
                 splits = timeStr.split(":");
@@ -129,12 +138,29 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                     btn_study.setText("停止静学");
                 }else {
                     //结束学习
-                    isStudy = false;
-                    handler.removeCallbacks(timerun);
-                    btn_study.setText("开始静学");
+
+                    new AlertDialog.Builder(getContext()).setTitle("真的忍心放弃静学吗？")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //点击确定触发的事件
+                                    isStudy=false;
+                                    handler.removeCallbacks(timerun);
+                                    btn_study.setText("开始静学");
+                                    //重置计时器
+                                    tv_time.setText("01:30:00");
+                                }
+                            })
+                            .setNegativeButton("返回", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //点击取消触发的事件
+                                }
+                            }).show();
+
+
                 }
-
-
 
                 break;
         }
