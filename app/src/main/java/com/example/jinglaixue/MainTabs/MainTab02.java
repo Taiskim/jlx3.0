@@ -22,7 +22,8 @@ import com.example.jinglaixue.R;
 public class MainTab02 extends Fragment implements View.OnClickListener {
 
     private View thisView;
-
+    private Button btn_add;
+    private Button btn_minus;
 
 
     @Nullable
@@ -50,13 +51,15 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
 
     private void unitUI() {
-        thisView.findViewById(R.id.btn_add).setOnClickListener(this);
-        thisView.findViewById(R.id.btn_minus).setOnClickListener(this);
-        thisView.findViewById(R.id.btn_beginstudy).setOnClickListener(this);
-
-
+        btn_add = thisView.findViewById(R.id.btn_add);
+        btn_minus = thisView.findViewById(R.id.btn_minus);
         tv_time = (TextView) thisView.findViewById(R.id.tv_time);
         btn_study =  (Button)thisView.findViewById(R.id.btn_beginstudy);
+
+        btn_add.setOnClickListener(this);
+        btn_minus.setOnClickListener(this);
+        thisView.findViewById(R.id.btn_beginstudy).setOnClickListener(this);
+
 
         timerun = new Runnable() {
             @Override
@@ -134,17 +137,20 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                 if(!isStudy){
                     //开始学习
                     isStudy = true;
+                    btn_add.setVisibility(View.INVISIBLE);
+                    btn_minus.setVisibility(View.INVISIBLE);
                     handler.postDelayed(timerun, 0);
                     btn_study.setText("停止静学");
                 }else {
                     //结束学习
-
                     new AlertDialog.Builder(getContext()).setTitle("真的忍心放弃静学吗？")
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //点击确定触发的事件
                                     isStudy=false;
+                                    btn_add.setVisibility(View.VISIBLE);
+                                    btn_minus.setVisibility(View.VISIBLE);
                                     handler.removeCallbacks(timerun);
                                     btn_study.setText("开始静学");
                                     //重置计时器
