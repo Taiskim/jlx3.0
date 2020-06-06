@@ -35,4 +35,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation("com.squareup.okhttp3:okhttp:4.7.2")
     implementation 'com.alibaba:fastjson:1.2.70'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 }
