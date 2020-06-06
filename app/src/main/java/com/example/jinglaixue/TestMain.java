@@ -1,15 +1,21 @@
 package com.example.jinglaixue;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.jinglaixue.MainTabs.MainTab01;
 import com.example.jinglaixue.MainTabs.MainTab02;
@@ -26,8 +32,14 @@ public class TestMain extends FragmentActivity  implements View.OnClickListener 
     private FragmentPagerAdapter mAdapter;
     private List<Fragment> mFragments = new ArrayList<Fragment>();
 
+    private RadioGroup rg_group;
 
-
+//    Handler handler = new Handler(){
+//        @Override
+//        public void handleMessage(@NonNull Message msg) {
+//            rg_group.setBackgroundColor();
+//        }
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -75,8 +87,7 @@ public class TestMain extends FragmentActivity  implements View.OnClickListener 
 //                                .setImageResource(R.drawable.tab_weixin_pressed);
                         break;
                     case 1:
-//                        ((ImageButton) mTabBtnJX.findViewById(R.id.btn_tab_bottom_JX))
-//                                .setImageResource(R.drawable.tab_find_frd_pressed);
+//
                         break;
                     case 2:
 //                        ((ImageButton) mTabBtnFirend.findViewById(R.id.btn_tab_bottom_friend))
@@ -119,6 +130,7 @@ public class TestMain extends FragmentActivity  implements View.OnClickListener 
 
     private void initView()
     {
+        rg_group = findViewById(R.id.rg_group);
 
         findViewById(R.id.rb_home).setOnClickListener(this);
         findViewById(R.id.rb_JX).setOnClickListener(this);

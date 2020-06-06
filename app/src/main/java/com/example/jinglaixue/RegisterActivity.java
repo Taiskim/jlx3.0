@@ -1,7 +1,11 @@
 package com.example.jinglaixue;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,15 +13,28 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.BufferedSink;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText ed_password2;
     private Button btn_register;
     private TextView tv_login;
+
+
 
 
 
@@ -74,6 +93,55 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
 
                 //发起request请求
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody =new FormBody.Builder()
+                        .add("email",email)
+                        .add("username",username)
+                        .add("password",password)
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://10.0.2.2:8000/users/register")
+                        .post(requestBody)
+                        .build();
+
+                @SuppressLint("HandlerLeak") final Handler handler = new Handler(){
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        String repsonseStr = msg.obj.toString();
+                        JSONObject responseJson = JSON.parseObject(repsonseStr);
+                        //注册成功
+                        if(responseJson.get("msg").equals("success")){
+                            Toast.makeText(getBaseContext(),"注册成功！请登陆。",Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent();
+                            intent.setClass(getApplicationContext(),LoginActivity.class);
+                            startActivity(intent);
+                        }else {
+                            //注册失败
+                            Toast.makeText(getBaseContext(),"用户名已存在",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                };
+
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        if(response.isSuccessful()){
+                            Message msg = new Message();
+                            msg.obj = response.body().string();
+                            handler.sendMessage(msg);
+
+                        }
+
+                    }
+                });
+
+
+
 
 
                         //获取response 信息（是否注册成功）

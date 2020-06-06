@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/login_bg"
+        android:src="@drawable/jx_login_background"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
@@ -33,7 +33,7 @@
                 app:srcCompat="@drawable/username" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/login_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -61,7 +61,7 @@
                 app:srcCompat="@drawable/password" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/login_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -82,13 +82,13 @@
             android:paddingRight="60dp">
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/btn_login"
                 android:layout_width="266dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/blue_1"
+                android:background="@drawable/green_1"
                 android:text="@string/login"
-                android:textColor="#fde471"
+                android:textColor="#ffffff"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -103,13 +103,13 @@
             android:paddingRight="60dp">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btn_toRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/blue_2"
+                android:background="@drawable/green_1"
                 android:text="@string/register"
-                android:textColor="#ba6c11"
+                android:textColor="#ffffff"
                 android:textSize="25sp" />
         </LinearLayout>
     </LinearLayout>
