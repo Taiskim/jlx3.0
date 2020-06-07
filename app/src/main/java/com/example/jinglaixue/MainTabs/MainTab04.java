@@ -13,17 +13,11 @@ import androidx.fragment.app.Fragment;
 import com.example.jinglaixue.R;
 
 public class MainTab04 extends Fragment {
-    private Button logout;
-    private Button aboutus;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_setting,container,false);
-        initUI();
-    }
 
-    private void initUI() {
-        logout=findViewById
     }
 }
