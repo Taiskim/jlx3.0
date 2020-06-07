@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#34b78a"
-    tools:context=".TestMain"
+    tools:context=".MainActivity"
     android:orientation="vertical">
 
 

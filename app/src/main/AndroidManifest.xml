@@ -14,7 +14,7 @@
         android:networkSecurityConfig="@xml/network_security_config">
 
         <activity
-            android:name=".TestMain"
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>

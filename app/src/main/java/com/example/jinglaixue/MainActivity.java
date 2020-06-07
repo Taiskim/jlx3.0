@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TestMain extends FragmentActivity  implements View.OnClickListener {
+public class MainActivity extends FragmentActivity  implements View.OnClickListener {
 
     private ViewPager mViewPager;
     private FragmentPagerAdapter mAdapter;
@@ -83,11 +84,10 @@ public class TestMain extends FragmentActivity  implements View.OnClickListener 
                 switch (position)
                 {
                     case 0:
-//                        ((ImageButton) mTabBtnHome.findViewById(R.id.btn_tab_bottom_home))
-//                                .setImageResource(R.drawable.tab_weixin_pressed);
+                            rg_group.setBackgroundColor(Color.parseColor("#ffe471"));
                         break;
                     case 1:
-//
+                            rg_group.setBackgroundColor(Color.parseColor("#34b78a"));
                         break;
                     case 2:
 //                        ((ImageButton) mTabBtnFirend.findViewById(R.id.btn_tab_bottom_friend))
