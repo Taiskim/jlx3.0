@@ -44,7 +44,7 @@
             android:layout_height="80dp"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
-            android:background="@drawable/biaoqing" />
+            android:background="@drawable/sticker" />
     </RelativeLayout>
 
 
