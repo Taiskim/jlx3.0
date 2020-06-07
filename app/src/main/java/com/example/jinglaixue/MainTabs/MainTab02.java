@@ -1,5 +1,6 @@
 package com.example.jinglaixue.MainTabs;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,12 +12,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.jinglaixue.R;
+import com.example.jinglaixue.UserAccount;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MainTab02 extends Fragment implements View.OnClickListener {
@@ -24,6 +43,8 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
     private View thisView;
     private Button btn_add;
     private Button btn_minus;
+
+
 
 
     @Nullable
@@ -38,7 +59,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
 
     private TextView tv_time;
-    private Handler handler = new Handler(){
+    private Handler time_handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
             tv_time.setText(msg.obj.toString());
@@ -65,7 +86,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
                 timing();
-                handler.postDelayed(this,1000);
+                time_handler.postDelayed(this,1000);
             }
 
         };
@@ -114,6 +135,8 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                 m = Integer.parseInt(splits[1]);
                 s = Integer.parseInt(splits[2]);
 
+                if(m <= 30 && h==0)
+                    break;
                 m = m-30;
                 if(m<0){
                     h = h - 1;
@@ -139,9 +162,102 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                     isStudy = true;
                     btn_add.setVisibility(View.INVISIBLE);
                     btn_minus.setVisibility(View.INVISIBLE);
-                    handler.postDelayed(timerun, 0);
+                    time_handler.postDelayed(timerun, 0);
                     btn_study.setText("停止静学");
+
+                    //声明hanler处理回调
+                    @SuppressLint("HandlerLeak") final Handler handler = new Handler(){
+                        @Override
+                        public void handleMessage(@NonNull Message msg) {
+                            JSONObject json = JSON.parseObject(msg.obj.toString());
+                            if(json.getString("code").equals("1")){
+                                //Toast.makeText(getContext(),"成功静学!",Toast.LENGTH_SHORT).show();
+                                UserAccount.shard().setTime_id(json.getString("time_id"));
+                            }else {
+                                Toast.makeText(getContext(),"静学失败!"+json.getString("msg"),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
+
+
+                    //向服务器发送token 、set_time
+                    String set_time = tv_time.getText().toString().trim();
+
+
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    HttpUrl urlBuilder = HttpUrl.parse(UserAccount.shard().hostaddr+"/users/beginjx").newBuilder()
+                            .addQueryParameter("token", UserAccount.shard().getToken())
+                            .addQueryParameter("set_time", set_time)
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .url(urlBuilder)
+                            .build();
+                    okHttpClient.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            if(response.isSuccessful()){
+                                Message msg = new Message();
+                                msg.obj = response.body().string();
+                                handler.sendMessage(msg);
+
+                            }
+                        }
+                    });
+
                 }else {
+                    //声明handler处理回调的
+                    @SuppressLint("HandlerLeak" ) final Handler handler = new Handler(){
+                        @Override
+                        public void handleMessage(@NonNull Message msg) {
+                            JSONObject json = JSON.parseObject(msg.obj.toString());
+                            if(json.getString("code").equals("1")){
+
+                                UserAccount.shard().setTime_id(json.getString("time_id"));
+
+                                Float duration = json.getFloat("duration");
+                                String rewardText = "";
+                                if(duration < 5400){
+                                    rewardText = "完成静学的时间,超过全球92%的用户！";
+                                    if (duration < 3600)
+                                        rewardText = "完成静学的时间,超过全球83%的用户！";
+                                    if (duration < 1800)
+                                        rewardText = "完成静学的时间,超过全球67%的用户！";
+                                }else {
+                                    rewardText = "完成静学的时间,超过全球99%的用户！";
+                                }
+
+
+                                //Toast.makeText(getContext(),"成功完成静学! 获得能量："+json.getString("reward"),Toast.LENGTH_SHORT).show();
+
+                                //弹出对话框
+                                new AlertDialog.Builder(getContext()).setTitle(rewardText)
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        }).show();
+                            }else {
+                                //Toast.makeText(getContext(),"静学失败!",Toast.LENGTH_SHORT).show();
+                                //弹出对话框
+                                new AlertDialog.Builder(getContext()).setTitle("全球有73%的人能够坚持完成!再接再厉")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        }).show();
+                            }
+                        }
+                    };
+
+
                     //结束学习
                     new AlertDialog.Builder(getContext()).setTitle("真的忍心放弃静学吗？")
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -151,10 +267,40 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                                     isStudy=false;
                                     btn_add.setVisibility(View.VISIBLE);
                                     btn_minus.setVisibility(View.VISIBLE);
-                                    handler.removeCallbacks(timerun);
+                                    time_handler.removeCallbacks(timerun);
                                     btn_study.setText("开始静学");
                                     //重置计时器
                                     tv_time.setText("01:30:00");
+
+
+
+
+                                    //请求接口
+                                    OkHttpClient okHttpClient = new OkHttpClient();
+                                    HttpUrl urlBuilder = HttpUrl.parse(UserAccount.shard().hostaddr+"/users/endjx").newBuilder()
+                                            .addQueryParameter("token", UserAccount.shard().getToken())
+                                            .addQueryParameter("time_id",UserAccount.shard().getTime_id())
+                                            .build();
+
+                                    Request request = new Request.Builder()
+                                            .url(urlBuilder)
+                                            .build();
+                                    okHttpClient.newCall(request).enqueue(new Callback() {
+                                        @Override
+                                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                                        }
+
+                                        @Override
+                                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                            if(response.isSuccessful()){
+                                                Message msg = new Message();
+                                                msg.obj = response.body().string();
+                                                handler.sendMessage(msg);
+
+                                            }
+                                        }
+                                    });
                                 }
                             })
                             .setNegativeButton("返回", new DialogInterface.OnClickListener() {
@@ -201,6 +347,6 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
         Message msg = new Message();
         msg.obj = timeStr;
 
-        handler.sendMessage(msg);
+        time_handler.sendMessage(msg);
     }
 }

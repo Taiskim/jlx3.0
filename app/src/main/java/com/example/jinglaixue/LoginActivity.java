@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .add("password",psdStr)
                         .build();
                 Request request = new Request.Builder()
-                        .url("http://47.102.212.0:8000/users/login")
+                        .url(UserAccount.shard().hostaddr+"/users/login")
                         .post(requestBody)
                         .build();
                 okHttpClient.newCall(request).enqueue(new Callback() {

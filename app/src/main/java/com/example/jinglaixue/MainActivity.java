@@ -29,6 +29,7 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity  implements View.OnClickListener {
 
+
     private ViewPager mViewPager;
     private FragmentPagerAdapter mAdapter;
     private List<Fragment> mFragments = new ArrayList<Fragment>();
