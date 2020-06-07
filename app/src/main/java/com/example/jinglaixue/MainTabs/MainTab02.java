@@ -53,6 +53,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         thisView = inflater.inflate(R.layout.activity_j_xmode,container,false);
+
         unitUI();
         return thisView;
     }
@@ -84,6 +85,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
         btn_minus.setOnClickListener(this);
         thisView.findViewById(R.id.btn_beginstudy).setOnClickListener(this);
 
+        fatcat_study.setVisibility(View.INVISIBLE);
 
         timerun = new Runnable() {
             @Override

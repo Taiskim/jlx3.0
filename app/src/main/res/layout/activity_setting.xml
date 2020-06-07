@@ -7,6 +7,29 @@
     android:background="@drawable/settingbg"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="574dp"
+        android:background="@android:color/transparent"
+        />
+        <Button
+        android:id="@+id/aboutus"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="460dp"
+        android:background="@android:color/transparent"
+        />
+
+    </RelativeLayout>
 
 
+
+
+        
 </LinearLayout>
