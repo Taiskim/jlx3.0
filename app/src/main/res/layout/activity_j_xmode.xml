@@ -12,11 +12,19 @@
     <RelativeLayout
         android:id="@+id/rl_center"
         android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:background="@drawable/jx_shalou"
+        >
 
-        android:layout_height="300dp">
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/fatcat_study"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/fatcat_study"
+            />
 
         <Button
             android:id="@+id/btn_minus"

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
     private View thisView;
     private Button btn_add;
     private Button btn_minus;
+    private ImageView fatcat_study;
 
 
 
@@ -72,6 +74,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
 
     private void unitUI() {
+        fatcat_study=thisView.findViewById(R.id.fatcat_study);
         btn_add = thisView.findViewById(R.id.btn_add);
         btn_minus = thisView.findViewById(R.id.btn_minus);
         tv_time = (TextView) thisView.findViewById(R.id.tv_time);
@@ -160,6 +163,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                 if(!isStudy){
                     //开始学习
                     isStudy = true;
+                    fatcat_study.setVisibility(View.VISIBLE);
                     btn_add.setVisibility(View.INVISIBLE);
                     btn_minus.setVisibility(View.INVISIBLE);
                     time_handler.postDelayed(timerun, 0);
@@ -265,6 +269,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //点击确定触发的事件
                                     isStudy=false;
+                                    fatcat_study.setVisibility(View.INVISIBLE);
                                     btn_add.setVisibility(View.VISIBLE);
                                     btn_minus.setVisibility(View.VISIBLE);
                                     time_handler.removeCallbacks(timerun);
