@@ -91,12 +91,10 @@ public class MainActivity extends FragmentActivity  implements View.OnClickListe
                             rg_group.setBackgroundColor(Color.parseColor("#34b78a"));
                         break;
                     case 2:
-//                        ((ImageButton) mTabBtnFirend.findViewById(R.id.btn_tab_bottom_friend))
-//                                .setImageResource(R.drawable.tab_address_pressed);
+                            rg_group.setBackgroundColor(Color.parseColor("#34b78a"));
                         break;
                     case 3:
-//                        ((ImageButton) mTabBtnProfile.findViewById(R.id.btn_tab_bottom_profile))
-//                                .setImageResource(R.drawable.tab_settings_pressed);
+                            rg_group.setBackgroundColor(Color.parseColor("#34b78a"));
                         break;
                 }
 
