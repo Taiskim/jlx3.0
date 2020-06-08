@@ -62,6 +62,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
 
     private TextView tv_time;
+    @SuppressLint("HandlerLeak")
     private Handler time_handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -71,7 +72,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
     Button btn_study;
     Runnable timerun;
 
-    boolean isStudy = false;
+    public boolean isStudy = false;
 
 
     private void unitUI() {
@@ -96,6 +97,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
         };
     }
+
 
     @Override
     public void onClick(View view) {

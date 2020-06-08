@@ -7,12 +7,22 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -36,20 +46,81 @@ public class MainActivity extends FragmentActivity  implements View.OnClickListe
 
     private RadioGroup rg_group;
 
-//    Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(@NonNull Message msg) {
-//            rg_group.setBackgroundColor();
-//        }
-//    }
+    MainTab01 tab01;
+    MainTab02 tab02;
+    MainTab03 tab03;
+    MainTab04 tab04;
+
+
+    @SuppressLint("HandlerLeak")
+    public Handler homePressHandler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            new AlertDialog.Builder(getBaseContext()).setTitle("真的要退出吗？")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
+        }
+    };
+    //自定义的广播接收者
+    private HomeWatcherReceiver mHomeKeyReceiver = null;
+
+    //注册广播接收者，监听Home键
+    private void registerHomeKeyReceiver(Context context) {
+        Log.i("LOG_TAG", "registerHomeKeyReceiver");
+        mHomeKeyReceiver = new HomeWatcherReceiver(homePressHandler);
+        IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        context.registerReceiver(mHomeKeyReceiver, homeFilter);
+    }
+
+    //取消监听广播接收者
+    private void unregisterHomeKeyReceiver(Context context) {
+        Log.i("woaini", "unregisterHomeKeyReceiver");
+        if (null != mHomeKeyReceiver) {
+            context.unregisterReceiver(mHomeKeyReceiver);
+        }
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        String text = "";
+        if(tab02.isStudy)
+            text = "确认放弃静学吗？";
+        else
+            text = "确认退出吗？";
+        new AlertDialog.Builder(this)
+                .setTitle(text)
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .show();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterHomeKeyReceiver(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_test_main);
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
 
-
+        registerHomeKeyReceiver(this);
         initView();
 
 
@@ -71,7 +142,7 @@ public class MainActivity extends FragmentActivity  implements View.OnClickListe
         };
 
         mViewPager.setAdapter(mAdapter);
-
+        mViewPager.setOffscreenPageLimit(3);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
@@ -137,14 +208,16 @@ public class MainActivity extends FragmentActivity  implements View.OnClickListe
         findViewById(R.id.rb_profile).setOnClickListener(this);
 
 
-        MainTab01 tab01 = new MainTab01();
-        MainTab02 tab02 = new MainTab02();
-        MainTab03 tab03 = new MainTab03();
-        MainTab04 tab04 = new MainTab04();
+        tab01 = new MainTab01();
+        tab02 = new MainTab02();
+        tab03 = new MainTab03();
+        tab04 = new MainTab04();
         mFragments.add(tab01);
         mFragments.add(tab02);
         mFragments.add(tab03);
         mFragments.add(tab04);
+
+
     }
 
     @Override

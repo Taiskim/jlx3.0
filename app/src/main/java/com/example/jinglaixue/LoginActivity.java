@@ -84,6 +84,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(getBaseContext(),"登陆成功！",Toast.LENGTH_SHORT).show();
                             //跳转界面
                             Intent intent = new Intent();
+                            //防止按返回键回到登陆页面
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.setClass(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                         }else {
