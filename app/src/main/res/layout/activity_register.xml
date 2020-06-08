@@ -89,7 +89,7 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/styles"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:hint="@string/register_3" />
         </LinearLayout>
 
@@ -114,7 +114,7 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/styles"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:hint="@string/register_4" />
         </LinearLayout>
 

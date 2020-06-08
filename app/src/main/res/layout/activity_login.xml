@@ -67,7 +67,7 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/styles"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:hint="@string/login_2"
                 android:textSize="25sp" />
         </LinearLayout>
