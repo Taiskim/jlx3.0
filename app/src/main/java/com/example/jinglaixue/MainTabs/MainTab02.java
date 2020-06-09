@@ -228,20 +228,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
                                 UserAccount.shard().setTime_id(json.getString("time_id"));
 
-                                Float duration = json.getFloat("duration");
-                                String rewardText = "";
-                                if(duration < 5400){
-                                    rewardText = "完成静学的时间,超过全球92%的用户！";
-                                    if (duration < 3600)
-                                        rewardText = "完成静学的时间,超过全球83%的用户！";
-                                    if (duration < 1800)
-                                        rewardText = "完成静学的时间,超过全球67%的用户！";
-                                }else {
-                                    rewardText = "完成静学的时间,超过全球99%的用户！";
-                                }
-
-
-                                //Toast.makeText(getContext(),"成功完成静学! 获得能量："+json.getString("reward"),Toast.LENGTH_SHORT).show();
+                                String rewardText = json.getString("rewardText");
 
                                 //弹出对话框
                                 new AlertDialog.Builder(getContext()).setTitle(rewardText)
@@ -252,7 +239,6 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                                             }
                                         }).show();
                             }else {
-                                //Toast.makeText(getContext(),"静学失败!",Toast.LENGTH_SHORT).show();
                                 //弹出对话框
                                 new AlertDialog.Builder(getContext()).setTitle("全球有73%的人能够坚持完成!再接再厉")
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
