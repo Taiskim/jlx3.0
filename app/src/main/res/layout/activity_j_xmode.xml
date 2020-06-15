@@ -54,7 +54,14 @@
         android:textSize="60sp"
         android:textColor="#FFFFFF"
         />
+    <ImageButton
+        android:id="@+id/btn_jxinfo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/xinxiaoxi_hl"
 
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp" />
     <Button
         android:id="@+id/btn_beginstudy"
         android:layout_width="192dp"

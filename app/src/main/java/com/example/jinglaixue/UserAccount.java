@@ -6,6 +6,8 @@ public class UserAccount {
     private static  UserAccount instance = null;
     //服务器地址
     public final String hostaddr = "http://47.102.212.0";
+    //本地服务器地址
+    //public final String hostaddr = "http://10.0.2.2:8000";
     private  UserAccount(){
 
     }

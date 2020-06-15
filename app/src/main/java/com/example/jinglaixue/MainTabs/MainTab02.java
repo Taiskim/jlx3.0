@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,8 @@ import androidx.fragment.app.Fragment;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.jinglaixue.JxInfo;
+import com.example.jinglaixue.MainActivity;
 import com.example.jinglaixue.R;
 import com.example.jinglaixue.UserAccount;
 
@@ -45,7 +48,7 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
     private Button btn_add;
     private Button btn_minus;
     private ImageView fatcat_study;
-
+    private ImageButton btn_jxinfo;
 
 
 
@@ -81,9 +84,11 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
         btn_minus = thisView.findViewById(R.id.btn_minus);
         tv_time = (TextView) thisView.findViewById(R.id.tv_time);
         btn_study =  (Button)thisView.findViewById(R.id.btn_beginstudy);
+        btn_jxinfo = thisView.findViewById(R.id.btn_jxinfo);
 
         btn_add.setOnClickListener(this);
         btn_minus.setOnClickListener(this);
+        btn_jxinfo.setOnClickListener(this);
         thisView.findViewById(R.id.btn_beginstudy).setOnClickListener(this);
 
         fatcat_study.setVisibility(View.INVISIBLE);
@@ -231,7 +236,8 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                                 String rewardText = json.getString("rewardText");
 
                                 //弹出对话框
-                                new AlertDialog.Builder(getContext()).setTitle(rewardText)
+                                new AlertDialog.Builder(getContext())
+                                        .setTitle(rewardText)
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -240,7 +246,8 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
                                         }).show();
                             }else {
                                 //弹出对话框
-                                new AlertDialog.Builder(getContext()).setTitle("全球有73%的人能够坚持完成!再接再厉")
+                                new AlertDialog.Builder(getContext())
+                                        .setTitle("全球有73%的人能够坚持完成!再接再厉")
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -309,6 +316,11 @@ public class MainTab02 extends Fragment implements View.OnClickListener {
 
                 }
 
+                break;
+            case R.id.btn_jxinfo:
+                Intent intent = new Intent();
+                intent.setClass(getContext(), JxInfo.class);
+                startActivity(intent);
                 break;
         }
     }
