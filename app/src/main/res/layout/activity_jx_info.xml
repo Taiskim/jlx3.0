@@ -9,11 +9,11 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/img_cat"
-        android:src="@drawable/fatcat_gif"
+        android:src="@drawable/workhard"
         android:layout_height="200dp"
         android:layout_width="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-45dp"
+        android:layout_marginBottom="-15dp"
         android:layout_above="@+id/ll" />
 
     <LinearLayout
